@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>추천 상품 다모아 - 쿠팡 파트너스 모음</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome (아이콘용) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* 폰트 지정 및 말줄임표 처리 */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col justify-between">
+
+  <!-- Header -->
+  <header class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+        <!-- 로고 / 타이틀 -->
+        <h1 class="text-xl sm:text-2xl font-bold text-gray-900 flex items-center gap-2">
+          <i class="fa-solid font-black text-blue-600 fa-bag-shopping"></i>
+          <span>오늘의 추천 핫딜</span>
+        </h1>
+        <!-- 검색창 -->
+        <div class="relative w-full sm:w-72">
+          <input 
+            type="text" 
+            id="searchInput" 
+            placeholder="상품명으로 검색..." 
+            class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+          >
+          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-gray-400 text-sm"></i>
+        </div>
+      </div>
+
+      <!-- 카테고리 필터 버튼 -->
+      <div class="flex items-center gap-2 mt-4 overflow-x-auto pb-1 text-sm no-scrollbar" id="categoryButtons">
+        <!-- JS로 동적 생성되거나 기본 버튼 활성화 -->
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex-grow w-full">
+    
+    <!-- 상품 목록 그리드 -->
+    <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
+      <!-- JS에서 카드가 동적으로 삽입됩니다. -->
+    </div>
+
+    <!-- 검색 결과 없을 때 -->
+    <div id="noResults" class="hidden text-center py-16">
+      <i class="fa-solid fa-box-open text-4xl text-gray-300 mb-3"></i>
+      <p class="text-gray-500 font-medium">검색 결과에 맞는 상품이 없습니다.</p>
+    </div>
+
+  </main>
+
+  <!-- Footer (공지문구 포함) -->
+  <footer class="bg-gray-100 border-t border-gray-200 mt-12 py-6">
+    <div class="max-w-6xl mx-auto px-4 text-center text-xs text-gray-500 space-y-2">
+      <p class="font-semibold text-gray-600">
+        이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
+      </p>
+      <p>© 2026 추천 핫딜 모음. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // -------------------------------------------------------------
+    // 1. 상품 데이터 (이 부분을 수정/추가하여 상품을 관리하세요)
+    // -------------------------------------------------------------
+    const products = [
+      {
+        id: 1,
+        title: "Apple 2024 아이패드 에어 11 M2칩",
+        price: 899000,
+        category: "디지털/가전",
+        image: "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=500&auto=format&fit=crop",
+        link: "https://link.coupang.com/a/sample1", // 본인 파트너스 링크
+        badge: "로켓배송"
+      },
+      {
+        id: 2,
+        title: "소니 WH-1000XM5 노이즈캔슬링 헤드폰",
+        price: 449000,
+        category: "디지털/가전",
+        image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&auto=format&fit=crop",
+        link: "https://link.coupang.com/a/sample2",
+        badge: "무료배송"
+      },
+      {
+        id: 3,
+        title: "무소음 오피스 무선 마우스 키보드 세트",
+        price: 32500,
+        category: "디지털/가전",
+        image: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500&auto=format&fit=crop",
+        link: "https://link.coupang.com/a/sample3",
+        badge: "로켓배송"
+      },
+      {
+        id: 4,
+        title: "프리미엄 로스팅 원두 커피 1kg",
+        price: 18900,
+        category: "식품",
+        image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=500&auto=format&fit=crop",
+        link: "https://link.coupang.com/a/sample4",
+        badge: "특가할인"
+      },
+      {
+        id: 5,
+        title: "오버핏 데일리 라운드 반팔 티셔츠 (2Pack)",
+        price: 24900,
+        category: "패션/의류",
+        image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500&auto=format&fit=crop",
+        link: "https://link.coupang.com/a/sample5",
+        badge: "무료배송"
+      },
+      {
+        id: 6,
+        title: "스테인리스 텀블러 500ml + 전용 솔 세트",
+        price: 15400,
+        category: "주방/생활",
+        image: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500&auto=format&fit=crop",
+        link: "https://link.coupang.com/a/sample6",
+        badge: "로켓배송"
+      }
+    ];
+
+    // -------------------------------------------------------------
+    // 2. 상태 및 DOM 요소를 위한 변수
+    // -------------------------------------------------------------
+    let currentCategory = "전체";
+    let searchQuery = "";
+
+    const productGrid = document.getElementById("productGrid");
+    const noResults = document.getElementById("noResults");
+    const searchInput = document.getElementById("searchInput");
+    const categoryButtonsContainer = document.getElementById("categoryButtons");
+
+    // -------------------------------------------------------------
+    // 3. UI 랜더링 함수들
+    // -------------------------------------------------------------
+
+    // 카테고리 목록 추출 및 버튼 생성
+    function initCategories() {
+      const categories = ["전체", ...new Set(products.map(p => p.category))];
+      
+      categoryButtonsContainer.innerHTML = categories.map(cat => `
+        <button 
+          onclick="setCategory('${cat}')"
+          class="category-btn px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all whitespace-nowrap border ${
+            cat === currentCategory 
+              ? 'bg-blue-600 text-white border-blue-600 shadow-sm' 
+              : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-100'
+          }"
+        >
+          ${cat}
+        </button>
+      `).join('');
+    }
+
+    // 상품 카드 렌더링
+    function renderProducts() {
+      // 필터링 규칙 (카테고리 & 검색어)
+      const filtered = products.filter(product => {
+        const matchesCategory = currentCategory === "전체" || product.category === currentCategory;
+        const matchesSearch = product.title.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+      });
+
+      // 결과 없음 처리
+      if (filtered.length === 0) {
+        productGrid.innerHTML = "";
+        noResults.classList.remove("hidden");
+        return;
+      }
+
+      noResults.classList.add("hidden");
+
+      // HTML 카드 조합
+      productGrid.innerHTML = filtered.map(product => `
+        <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden flex flex-col justify-between border border-gray-100 group">
+          <div>
+            <!-- 이미지 (Hover 확대 효과) -->
+            <div class="relative overflow-hidden aspect-square bg-gray-100">
+              <img 
+                src="${product.image}" 
+                alt="${product.title}" 
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+              >
+              <!-- 뱃지 -->
+              ${product.badge ? `
+                <span class="absolute top-2 left-2 bg-blue-600 text-white text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded shadow">
+                  ${product.badge}
+                </span>
+              ` : ''}
+            </div>
+
+            <!-- 상품 설명 -->
+            <div class="p-3 sm:p-4">
+              <p class="text-[11px] text-gray-400 font-medium mb-1">${product.category}</p>
+              <h2 class="text-xs sm:text-sm font-medium text-gray-800 line-clamp-2 h-8 sm:h-10 mb-2 group-hover:text-blue-600 transition-colors">
+                ${product.title}
+              </h2>
+              <div class="text-sm sm:text-lg font-bold text-gray-900">
+                ${product.price.toLocaleString()} <span class="text-xs font-normal text-gray-600">원</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 구매하기 버튼 -->
+          <div class="p-3 sm:p-4 pt-0">
+            <a 
+              href="${product.link}" 
+              target="_blank" 
+              rel="noopener noreferrer shadow-sm"
+              class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs sm:text-sm py-2 px-3 rounded-lg flex items-center justify-center gap-1.5 transition-colors"
+            >
+              <span>쿠팡 최저가 보기</span>
+              <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            </a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // 카테고리 변경 처리
+    function setCategory(category) {
+      currentCategory = category;
+      initCategories(); // 버튼 상태 업데이트
+      renderProducts();
+    }
+
+    // -------------------------------------------------------------
+    // 4. 이벤트 리스너 등록 및 초기화
+    // -------------------------------------------------------------
+    
+    // 검색창 입력 이벤트 Handling
+    searchInput.addEventListener("input", (e) => {
+      searchQuery = e.target.value;
+      renderProducts();
+    });
+
+    // 앱 초기화 실행
+    initCategories();
+    renderProducts();
+  </script>
+</body>
+</html>
