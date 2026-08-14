@@ -32,14 +32,21 @@
   <!-- Header -->
   <header class="bg-white shadow-sm sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
-        <!-- 로고 / 타이틀 -->
-        <h1 class="text-xl sm:text-2xl font-bold text-gray-900 flex items-center gap-2">
-          <i class="fa-solid font-black text-rose-500 fa-heart"></i>
-          <span>우블리맘의 추천 핫딜</span>
-        </h1>
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
+        <!-- 로고 / 타이틀 & 유의 문구 -->
+        <div class="flex flex-col md:flex-row md:items-center gap-2">
+          <h1 class="text-xl sm:text-2xl font-bold text-gray-900 flex items-center gap-2 whitespace-nowrap">
+            <i class="fa-solid font-black text-rose-500 fa-heart"></i>
+            <span>우블리맘의 추천 핫딜</span>
+          </h1>
+          <!-- 상단 쿠팡 파트너스 필수 유의 문구 -->
+          <span class="text-[11px] text-gray-500 bg-gray-100 px-2.5 py-1 rounded-md border border-gray-200">
+            * 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
+          </span>
+        </div>
+
         <!-- 검색창 -->
-        <div class="relative w-full sm:w-72">
+        <div class="relative w-full sm:w-64 md:w-72">
           <input 
             type="text" 
             id="searchInput" 
@@ -73,7 +80,7 @@
 
   </main>
 
-  <!-- Footer (공지문구 포함) -->
+  <!-- Footer -->
   <footer class="bg-gray-100 border-t border-gray-200 mt-12 py-6">
     <div class="max-w-6xl mx-auto px-4 text-center text-xs text-gray-500 space-y-2">
       <p class="font-semibold text-gray-600">
@@ -88,14 +95,14 @@
     const categories = ["전체", "식품", "건강식품", "화장품", "육아용품", "생활용품", "가전제품"];
 
     // -------------------------------------------------------------
-    // 상품 데이터 (요청하신 8개 완성형 데이터)
+    // 상품 데이터 (관련성 높은 정밀 이미지 반영)
     // -------------------------------------------------------------
     const products = [
       {
         id: 1,
         title: "풀무원 토이쿠키 만들기 신비한 바닷속 이야기 (냉동)",
         category: "식품",
-        image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=500&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=500&auto=format&fit=crop", // 쿠키 만들기
         link: "https://link.coupang.com/a/gcGL1vkoP6",
         badge: "인기키트"
       },
@@ -103,7 +110,7 @@
         id: 2,
         title: "뽀로로 DIY 콤비네이션 피자 (냉동)",
         category: "식품",
-        image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&auto=format&fit=crop", // 피자
         link: "https://link.coupang.com/a/gcGOTAfOJo",
         badge: "아이간식"
       },
@@ -111,7 +118,7 @@
         id: 3,
         title: "풀무원 소불고기 꼬마김밥 키트",
         category: "식품",
-        image: "https://images.unsplash.com/photo-1553163147-622ab57be1c7?w=500&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?w=500&auto=format&fit=crop", // 김밥/한식
         link: "https://link.coupang.com/a/gcGQrI1VZs",
         badge: "간편한끼"
       },
@@ -119,7 +126,7 @@
         id: 4,
         title: "[추석 세일]풍년보감 6년근 고려홍삼정 올데이굿타임 스틱 100p",
         category: "건강식품",
-        image: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=500&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1577401239170-897942555fb3?w=500&auto=format&fit=crop", // 건강 스틱/액상 추출물
         link: "https://link.coupang.com/a/gcGWcbIUA8",
         badge: "추석세일"
       },
@@ -127,7 +134,7 @@
         id: 5,
         title: "[추석 세일]아이오페 슈퍼바이탈 기초 2종 기획세트",
         category: "화장품",
-        image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1608248597261-e4d0944703a4?w=500&auto=format&fit=crop", // 기초 화장품 세트
         link: "https://link.coupang.com/a/gcGZcmffSS",
         badge: "추석선물"
       },
@@ -135,7 +142,7 @@
         id: 6,
         title: "릿첼 유아용 리클라이너 소프트 의자",
         category: "육아용품",
-        image: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=500&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500&auto=format&fit=crop", // 유아 의자/가구
         link: "https://link.coupang.com/a/gcG22CNmgu",
         badge: "육아꿀템"
       },
@@ -143,7 +150,7 @@
         id: 7,
         title: "홈스타 바르는 곰팡이 싹 세정제, 120ml, 2개",
         category: "생활용품",
-        image: "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=500&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1585421514738-01798e348b17?w=500&auto=format&fit=crop", // 욕실/청소용품
         link: "https://link.coupang.com/a/gcG6KIxhca",
         badge: "청소필수"
       },
@@ -151,7 +158,7 @@
         id: 8,
         title: "쿠첸 제로핏 음식물 처리기 가정용",
         category: "가전제품",
-        image: "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=500&auto=format&fit=crop", // 주방 가전
         link: "https://link.coupang.com/a/gcGFMrxexg",
         badge: "삶의질상승"
       }
