@@ -18,7 +18,6 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
-    /* 스크롤바 숨기기 */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
@@ -86,92 +85,78 @@
 
   <!-- JavaScript -->
   <script>
-    // -------------------------------------------------------------
-    // 카테고리 고정 목록
-    // -------------------------------------------------------------
     const categories = ["전체", "식품", "건강식품", "화장품", "육아용품", "생활용품", "가전제품"];
 
     // -------------------------------------------------------------
-    // 상품 데이터 (8개 제품)
+    // 상품 데이터 (요청하신 8개 완성형 데이터)
     // -------------------------------------------------------------
     const products = [
       {
         id: 1,
-        title: "우블리맘 추천 엄선 프리미엄 식품 1",
-        price: 0,
+        title: "풀무원 토이쿠키 만들기 신비한 바닷속 이야기 (냉동)",
         category: "식품",
-        image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=500&auto=format&fit=crop",
         link: "https://link.coupang.com/a/gcGL1vkoP6",
-        badge: "추천핫딜"
+        badge: "인기키트"
       },
       {
         id: 2,
-        title: "우블리맘 추천 맛있는 먹거리 식품 2",
-        price: 0,
+        title: "뽀로로 DIY 콤비네이션 피자 (냉동)",
         category: "식품",
-        image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=500&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&auto=format&fit=crop",
         link: "https://link.coupang.com/a/gcGOTAfOJo",
-        badge: "인기상품"
+        badge: "아이간식"
       },
       {
         id: 3,
-        title: "우블리맘 추천 신선 식품 3",
-        price: 0,
+        title: "풀무원 소불고기 꼬마김밥 키트",
         category: "식품",
-        image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1553163147-622ab57be1c7?w=500&auto=format&fit=crop",
         link: "https://link.coupang.com/a/gcGQrI1VZs",
-        badge: "강력추천"
+        badge: "간편한끼"
       },
       {
         id: 4,
-        title: "온 가족을 위한 필수 영양/건강식품",
-        price: 0,
+        title: "[추석 세일]풍년보감 6년근 고려홍삼정 올데이굿타임 스틱 100p",
         category: "건강식품",
         image: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=500&auto=format&fit=crop",
         link: "https://link.coupang.com/a/gcGWcbIUA8",
-        badge: "건강케어"
+        badge: "추석세일"
       },
       {
         id: 5,
-        title: "촉촉하고 생기있는 피부를 위한 화장품",
-        price: 0,
+        title: "[추석 세일]아이오페 슈퍼바이탈 기초 2종 기획세트",
         category: "화장품",
-        image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=500&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500&auto=format&fit=crop",
         link: "https://link.coupang.com/a/gcGZcmffSS",
-        badge: "뷰티픽"
+        badge: "추석선물"
       },
       {
         id: 6,
-        title: "우리아이를 위한 안심 육아용품",
-        price: 0,
+        title: "릿첼 유아용 리클라이너 소프트 의자",
         category: "육아용품",
         image: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=500&auto=format&fit=crop",
         link: "https://link.coupang.com/a/gcG22CNmgu",
-        badge: "육아필수"
+        badge: "육아꿀템"
       },
       {
         id: 7,
-        title: "집안을 편안하게 만들어주는 생활용품",
-        price: 0,
+        title: "홈스타 바르는 곰팡이 싹 세정제, 120ml, 2개",
         category: "생활용품",
         image: "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=500&auto=format&fit=crop",
         link: "https://link.coupang.com/a/gcG6KIxhca",
-        badge: "생활꿀템"
+        badge: "청소필수"
       },
       {
         id: 8,
-        title: "삶의 질을 높여주는 스마트 가전제품",
-        price: 0,
+        title: "쿠첸 제로핏 음식물 처리기 가정용",
         category: "가전제품",
-        image: "https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=500&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=500&auto=format&fit=crop",
         link: "https://link.coupang.com/a/gcGFMrxexg",
-        badge: "스마트가전"
+        badge: "삶의질상승"
       }
     ];
 
-    // -------------------------------------------------------------
-    // 상태 및 DOM 변수
-    // -------------------------------------------------------------
     let currentCategory = "전체";
     let searchQuery = "";
 
@@ -180,9 +165,6 @@
     const searchInput = document.getElementById("searchInput");
     const categoryButtonsContainer = document.getElementById("categoryButtons");
 
-    // -------------------------------------------------------------
-    // UI 랜더링 함수
-    // -------------------------------------------------------------
     function initCategories() {
       categoryButtonsContainer.innerHTML = categories.map(cat => `
         <button 
@@ -236,7 +218,7 @@
                 ${product.title}
               </h2>
               <div class="text-xs sm:text-sm font-semibold text-gray-500">
-                쿠팡 할인가 확인하기
+                쿠팡 최저가 확인하기
               </div>
             </div>
           </div>
@@ -245,8 +227,8 @@
             <a 
               href="${product.link}" 
               target="_blank" 
-              rel="noopener noreferrer shadow-sm"
-              class="w-full bg-rose-500 hover:bg-rose-600 text-white font-semibold text-xs sm:text-sm py-2 px-3 rounded-lg flex items-center justify-center gap-1.5 transition-colors"
+              rel="noopener noreferrer"
+              class="w-full bg-rose-500 hover:bg-rose-600 text-white font-semibold text-xs sm:text-sm py-2 px-3 rounded-lg flex items-center justify-center gap-1.5 transition-colors shadow-sm"
             >
               <span>최저가 바로가기</span>
               <i class="fa-solid fa-chevron-right text-[10px]"></i>
