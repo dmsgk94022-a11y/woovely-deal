@@ -3,20 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>우블리맘의 추천 핫딜 - 쿠팡 파트너스 모음</title>
+  <title>우블리맘의 추천 핫딜</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome (아이콘용) -->
+  <!-- FontAwesome 아이콘 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    }
-    .line-clamp-2 {
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
     }
     .no-scrollbar::-webkit-scrollbar {
       display: none;
@@ -27,82 +21,110 @@
     }
   </style>
 </head>
-<body class="bg-gray-50 text-gray-800 min-h-screen flex flex-col justify-between">
+<body class="bg-gray-100 text-gray-800 min-h-screen flex justify-center">
 
-  <!-- Header -->
-  <header class="bg-white shadow-sm sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col sm:flex-row justify-between items-center gap-3 sm:gap-4">
-        <!-- 로고 / 타이틀 & 유의 문구 -->
-        <div class="flex flex-col md:flex-row md:items-center gap-2">
-          <h1 class="text-xl sm:text-2xl font-bold text-gray-900 flex items-center gap-2 whitespace-nowrap">
-            <i class="fa-solid font-black text-rose-500 fa-heart"></i>
-            <span>우블리맘의 추천 핫딜</span>
-          </h1>
-          <!-- 상단 쿠팡 파트너스 필수 유의 문구 -->
-          <span class="text-[11px] text-gray-500 bg-gray-100 px-2.5 py-1 rounded-md border border-gray-200">
-            * 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
-          </span>
+  <!-- 모바일 중앙 레이아웃 컨테이너 -->
+  <div class="w-full max-w-md bg-white min-h-screen flex flex-col justify-between shadow-lg">
+
+    <!-- Content Area -->
+    <div class="px-5 py-8">
+      
+      <!-- Profile Header -->
+      <div class="flex flex-col items-center text-center mb-6">
+        <!-- 프로필 아이콘/이미지 -->
+        <div class="w-20 h-20 bg-rose-100 rounded-full flex items-center justify-center mb-3 shadow-inner">
+          <i class="fa-solid fa-heart text-3xl text-rose-500"></i>
         </div>
+        
+        <h1 class="text-xl font-bold text-gray-900 mb-1">우블리맘의 추천 핫딜</h1>
+        <p class="text-xs text-gray-500 font-medium mb-3">엄선된 핫딜과 추천 아이템을 확인해보세요! 🧡</p>
+        
+        <!-- 비즈니스 제안 / 안내 버튼 (메일 보내기 연결) -->
+        <a 
+          href="mailto:dmsgk9422@naver.com" 
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-full text-xs text-gray-700 border border-gray-200 transition-colors"
+        >
+          <i class="fa-regular fa-envelope text-rose-500"></i>
+          <span>비즈니스 문의: dmsgk9422@naver.com</span>
+        </a>
+      </div>
 
-        <!-- 검색창 -->
-        <div class="relative w-full sm:w-64 md:w-72">
+      <!-- 스마트스토어 하이라이트 버튼 (우블리스토어 바로가기) -->
+      <div class="mb-6">
+        <a 
+          href="https://smartstore.naver.com/woovely2124" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="flex items-center justify-between p-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-2xl shadow-md transition-all group"
+        >
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center text-xl">
+              🛍️
+            </div>
+            <div class="text-left">
+              <span class="text-xs font-medium text-emerald-100 block">공식 스마트스토어</span>
+              <span class="text-sm font-bold block">우블리스토어 바로가기</span>
+            </div>
+          </div>
+          <i class="fa-solid fa-chevron-right text-emerald-200 group-hover:translate-x-1 transition-transform"></i>
+        </a>
+      </div>
+
+      <!-- 구분선 -->
+      <div class="border-b border-gray-100 my-4"></div>
+
+      <!-- Search & Category Header -->
+      <div class="mb-4 space-y-3">
+        <!-- Search Bar -->
+        <div class="relative">
           <input 
             type="text" 
             id="searchInput" 
-            placeholder="상품명으로 검색..." 
-            class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-rose-400 focus:border-transparent transition-all"
+            placeholder="상품명 검색..." 
+            class="w-full pl-9 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-rose-400"
           >
-          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-gray-400 text-sm"></i>
+          <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-gray-400 text-xs"></i>
+        </div>
+
+        <!-- Categories -->
+        <div class="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs no-scrollbar" id="categoryButtons">
+          <!-- JS 동적 생성 -->
         </div>
       </div>
 
-      <!-- 카테고리 필터 버튼 -->
-      <div class="flex items-center gap-2 mt-4 overflow-x-auto pb-1 text-sm no-scrollbar" id="categoryButtons">
-        <!-- JS로 동적 생성 -->
+      <!-- Product List (세로 카드형) -->
+      <div id="productGrid" class="space-y-3">
+        <!-- JS 동적 삽입 -->
       </div>
-    </div>
-  </header>
 
-  <!-- Main Content -->
-  <main class="max-w-6xl mx-auto px-4 py-6 sm:px-6 lg:px-8 flex-grow w-full">
-    
-    <!-- 상품 목록 그리드 -->
-    <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
-      <!-- JS에서 카드가 동적으로 삽입됩니다. -->
+      <!-- No Results -->
+      <div id="noResults" class="hidden text-center py-10">
+        <i class="fa-solid fa-box-open text-3xl text-gray-300 mb-2"></i>
+        <p class="text-xs text-gray-400">검색 결과가 없습니다.</p>
+      </div>
+
     </div>
 
-    <!-- 검색 결과 없을 때 -->
-    <div id="noResults" class="hidden text-center py-16">
-      <i class="fa-solid fa-box-open text-4xl text-gray-300 mb-3"></i>
-      <p class="text-gray-500 font-medium">검색 결과에 맞는 상품이 없습니다.</p>
-    </div>
-
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-gray-100 border-t border-gray-200 mt-12 py-6">
-    <div class="max-w-6xl mx-auto px-4 text-center text-xs text-gray-500 space-y-2">
-      <p class="font-semibold text-gray-600">
-        이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
+    <!-- Footer & Notice -->
+    <footer class="p-5 text-center bg-gray-50 border-t border-gray-100">
+      <p class="text-[10px] text-gray-400 leading-relaxed mb-2">
+        * 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
       </p>
-      <p>© 우블리맘의 추천 핫딜. All rights reserved.</p>
-    </div>
-  </footer>
+      <p class="text-[11px] font-medium text-gray-500">© 우블리맘. All rights reserved.</p>
+    </footer>
+
+  </div>
 
   <!-- JavaScript -->
   <script>
     const categories = ["전체", "식품", "건강식품", "화장품", "육아용품", "생활용품", "가전제품"];
 
-    // -------------------------------------------------------------
-    // 상품 데이터 (법적 문제 없는 정밀 매칭 라이선스 이미지 적용)
-    // -------------------------------------------------------------
     const products = [
       {
         id: 1,
         title: "풀무원 토이쿠키 만들기 신비한 바닷속 이야기 (냉동)",
         category: "식품",
-        image: "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=600&auto=format&fit=crop&q=80", // 쿠키 반죽 및 사키
+        image: "https://images.unsplash.com/photo-1499636136210-6f4ee915583e?w=300&auto=format&fit=crop",
         link: "https://link.coupang.com/a/gcGL1vkoP6",
         badge: "인기키트"
       },
@@ -110,7 +132,7 @@
         id: 2,
         title: "뽀로로 DIY 콤비네이션 피자 (냉동)",
         category: "식품",
-        image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&auto=format&fit=crop&q=80", // 콤비네이션 피자
+        image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=300&auto=format&fit=crop",
         link: "https://link.coupang.com/a/gcGOTAfOJo",
         badge: "아이간식"
       },
@@ -118,7 +140,7 @@
         id: 3,
         title: "풀무원 소불고기 꼬마김밥 키트",
         category: "식품",
-        image: "https://images.unsplash.com/photo-1553163147-622ab57be1c7?w=600&auto=format&fit=crop&q=80", // 김밥/롤 요리
+        image: "https://images.unsplash.com/photo-1617196034796-73dfa7b1fd56?w=300&auto=format&fit=crop",
         link: "https://link.coupang.com/a/gcGQrI1VZs",
         badge: "간편한끼"
       },
@@ -126,7 +148,7 @@
         id: 4,
         title: "[추석 세일]풍년보감 6년근 고려홍삼정 올데이굿타임 스틱 100p",
         category: "건강식품",
-        image: "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?w=600&auto=format&fit=crop&q=80", // 건강 스틱 포장 / 영양제
+        image: "https://images.unsplash.com/photo-1577401239170-897942555fb3?w=300&auto=format&fit=crop",
         link: "https://link.coupang.com/a/gcGWcbIUA8",
         badge: "추석세일"
       },
@@ -134,7 +156,7 @@
         id: 5,
         title: "[추석 세일]아이오페 슈퍼바이탈 기초 2종 기획세트",
         category: "화장품",
-        image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=600&auto=format&fit=crop&q=80", // 스킨케어 화장품 세트
+        image: "https://images.unsplash.com/photo-1608248597261-e4d0944703a4?w=300&auto=format&fit=crop",
         link: "https://link.coupang.com/a/gcGZcmffSS",
         badge: "추석선물"
       },
@@ -142,7 +164,7 @@
         id: 6,
         title: "릿첼 유아용 리클라이너 소프트 의자",
         category: "육아용품",
-        image: "https://images.unsplash.com/photo-1519689680058-324335c77eba?w=600&auto=format&fit=crop&q=80", // 아기/유아용 편안한 의자
+        image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&auto=format&fit=crop",
         link: "https://link.coupang.com/a/gcG22CNmgu",
         badge: "육아꿀템"
       },
@@ -150,7 +172,7 @@
         id: 7,
         title: "홈스타 바르는 곰팡이 싹 세정제, 120ml, 2개",
         category: "생활용품",
-        image: "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=600&auto=format&fit=crop&q=80", // 세제 및 청소용품
+        image: "https://images.unsplash.com/photo-1585421514738-01798e348b17?w=300&auto=format&fit=crop",
         link: "https://link.coupang.com/a/gcG6KIxhca",
         badge: "청소필수"
       },
@@ -158,7 +180,7 @@
         id: 8,
         title: "쿠첸 제로핏 음식물 처리기 가정용",
         category: "가전제품",
-        image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&auto=format&fit=crop&q=80", // 모던 주방 가전
+        image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?w=300&auto=format&fit=crop",
         link: "https://link.coupang.com/a/gcGFMrxexg",
         badge: "삶의질상승"
       }
@@ -176,10 +198,10 @@
       categoryButtonsContainer.innerHTML = categories.map(cat => `
         <button 
           onclick="setCategory('${cat}')"
-          class="category-btn px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all whitespace-nowrap border ${
+          class="px-3 py-1 rounded-full text-xs font-medium transition-all whitespace-nowrap border ${
             cat === currentCategory 
-              ? 'bg-rose-500 text-white border-rose-500 shadow-sm' 
-              : 'bg-white text-gray-600 border-gray-200 hover:bg-gray-100'
+              ? 'bg-rose-500 text-white border-rose-500' 
+              : 'bg-gray-50 text-gray-600 border-gray-200 hover:bg-gray-100'
           }"
         >
           ${cat}
@@ -203,45 +225,28 @@
       noResults.classList.add("hidden");
 
       productGrid.innerHTML = filtered.map(product => `
-        <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden flex flex-col justify-between border border-gray-100 group">
-          <div>
-            <div class="relative overflow-hidden aspect-square bg-gray-100">
-              <img 
-                src="${product.image}" 
-                alt="${product.title}" 
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                loading="lazy"
-              >
-              ${product.badge ? `
-                <span class="absolute top-2 left-2 bg-rose-500 text-white text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded shadow">
-                  ${product.badge}
-                </span>
-              ` : ''}
-            </div>
-
-            <div class="p-3 sm:p-4">
-              <p class="text-[11px] text-rose-500 font-semibold mb-1">${product.category}</p>
-              <h2 class="text-xs sm:text-sm font-medium text-gray-800 line-clamp-2 h-8 sm:h-10 mb-2 group-hover:text-rose-500 transition-colors">
-                ${product.title}
-              </h2>
-              <div class="text-xs sm:text-sm font-semibold text-gray-500">
-                쿠팡 최저가 확인하기
-              </div>
-            </div>
+        <a 
+          href="${product.link}" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="flex items-center gap-3 p-3 bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-rose-200 transition-all group"
+        >
+          <div class="relative w-16 h-16 rounded-xl overflow-hidden bg-gray-100 flex-shrink-0">
+            <img src="${product.image}" alt="${product.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
           </div>
-
-          <div class="p-3 sm:p-4 pt-0">
-            <a 
-              href="${product.link}" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              class="w-full bg-rose-500 hover:bg-rose-600 text-white font-semibold text-xs sm:text-sm py-2 px-3 rounded-lg flex items-center justify-center gap-1.5 transition-colors shadow-sm"
-            >
-              <span>최저가 바로가기</span>
-              <i class="fa-solid fa-chevron-right text-[10px]"></i>
-            </a>
+          <div class="flex-grow min-w-0 pr-1">
+            <div class="flex items-center gap-1.5 mb-1">
+              <span class="text-[10px] font-semibold text-rose-500 bg-rose-50 px-1.5 py-0.5 rounded">
+                ${product.badge || product.category}
+              </span>
+            </div>
+            <h2 class="text-xs font-medium text-gray-800 truncate group-hover:text-rose-500 transition-colors">
+              ${product.title}
+            </h2>
+            <p class="text-[11px] text-gray-400 mt-0.5">쿠팡에서 할인가 확인하기</p>
           </div>
-        </div>
+          <i class="fa-solid fa-chevron-right text-xs text-gray-300 group-hover:text-rose-500 group-hover:translate-x-0.5 transition-all mr-1"></i>
+        </a>
       `).join('');
     }
 
